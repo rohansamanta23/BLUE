@@ -1,0 +1,287 @@
+/* ─────────────────────────────────────────
+   NAVBAR — Blue Star Engineering
+   ───────────────────────────────────────── */
+
+/* ── Base ── */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 500;
+  height: 80px;
+  padding: 0 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition:
+    background     0.4s ease,
+    backdrop-filter 0.4s ease,
+    border-color   0.4s ease;
+  animation: navEntry 0.9s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Frosted glass after scroll */
+.scrolled {
+  background: rgba(11, 14, 19, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(200, 146, 42, 0.18);
+}
+
+@keyframes navEntry {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Logo ── */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  z-index: 601;                 /* stays above drawer */
+}
+
+.logoMark {
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(45deg);
+  flex-shrink: 0;
+  transition: border-color 0.3s;
+}
+
+.logo:hover .logoMark {
+  border-color: var(--glow);
+}
+
+.logoMark span {
+  display: block;
+  transform: rotate(-45deg);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  color: var(--gold);
+  letter-spacing: 1px;
+  transition: color 0.3s;
+}
+
+.logo:hover .logoMark span {
+  color: var(--glow);
+}
+
+.logoText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.logoName {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 21px;
+  letter-spacing: 3px;
+  color: var(--white);
+}
+
+.logoSub {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 9px;
+  letter-spacing: 4px;
+  color: var(--gold);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+/* ── Desktop Nav Links ── */
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  list-style: none;
+}
+
+.link {
+  color: var(--fog);
+  text-decoration: none;
+  font-size: 12px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.3s;
+}
+
+/* Underline animation */
+.link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transform: translateX(-50%);
+  transition: width 0.35s ease;
+}
+
+.link:hover {
+  color: var(--white);
+}
+
+.link:hover::after {
+  width: 100%;
+}
+
+/* Active section state */
+.link.active {
+  color: var(--white);
+}
+
+.link.active::after {
+  width: 100%;
+  background: var(--gold);
+}
+
+/* Contact CTA button */
+.ctaLink {
+  border: 1px solid var(--gold);
+  color: var(--gold) !important;
+  padding: 8px 22px;
+  letter-spacing: 2px;
+  transition: background 0.3s, color 0.3s !important;
+}
+
+.ctaLink::after {
+  display: none !important;
+}
+
+.ctaLink:hover {
+  background: var(--gold);
+  color: var(--ink) !important;
+}
+
+/* ── Hamburger Button ── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 601;
+}
+
+.hamburger span {
+  display: block;
+  width: 26px;
+  height: 1.5px;
+  background: var(--white);
+  transform-origin: center;
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity   0.25s ease,
+    width     0.25s ease;
+}
+
+/* Morphs into × when open */
+.hamburgerOpen span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+.hamburgerOpen span:nth-child(2) {
+  opacity: 0;
+  width: 0;
+}
+.hamburgerOpen span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* ── Mobile Drawer ── */
+.drawer {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  padding: 0 10%;
+  transform: translateX(100%);
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 600;
+  border-left: 1px solid rgba(200, 146, 42, 0.15);
+}
+
+.drawerOpen {
+  transform: translateX(0);
+}
+
+.drawerLinks {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.drawerLinks li {
+  overflow: hidden;
+}
+
+.drawerLinks a {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-decoration: none;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(44px, 9vw, 80px);
+  letter-spacing: 2px;
+  color: var(--fog);
+  padding: 8px 0;
+  transition:
+    color        0.3s ease,
+    padding-left 0.3s ease;
+}
+
+.drawerLinks a:hover {
+  color: var(--white);
+  padding-left: 14px;
+}
+
+.drawerNum {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  min-width: 28px;
+  padding-top: 6px;         /* align with cap-height of big text */
+}
+
+/* Contact link in drawer */
+.drawerCta {
+  color: var(--gold) !important;
+  border-top: 1px solid rgba(200, 146, 42, 0.2);
+  margin-top: 12px;
+  padding-top: 28px !important;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .navLinks  { display: none; }
+  .hamburger { display: flex; }
+
+  .nav {
+    padding: 0 5%;
+  }
+}

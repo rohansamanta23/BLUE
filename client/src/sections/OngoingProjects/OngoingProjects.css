@@ -1,0 +1,238 @@
+/* ─────────────────────────────────────────
+   ONGOING PROJECTS — Blue Star Engineering
+   ───────────────────────────────────────── */
+
+.ongoing {
+  background: var(--paper);
+  color: var(--ink);
+  padding: 160px 7%;
+}
+
+/* ── Header ── */
+.ongoing__header {
+  margin-bottom: 80px;
+
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity   0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ongoing__header--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ongoing__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+.ongoing__eyebrow::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.ongoing__title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(56px, 7vw, 96px);
+  line-height: 0.88;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* ── Grid ── */
+/* First card spans 2 rows — featured layout */
+.ongoing__grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 16px;
+  height: 680px;
+}
+
+.ongoing__card:first-child {
+  grid-row: 1 / 3;
+}
+
+/* ── Card ── */
+.ongoing__card {
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity   0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ongoing__card--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Background image with Ken Burns on hover */
+.ongoing__img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.06);
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ongoing__card:hover .ongoing__img {
+  transform: scale(1);
+}
+
+/* Dark gradient overlay */
+.ongoing__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(11, 14, 19, 0.95) 0%,
+    rgba(11, 14, 19, 0.3)  55%,
+    transparent            100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 28px 32px;
+}
+
+/* Status badge — top left */
+.ongoing__status {
+  align-self: flex-start;
+  background: var(--gold);
+  color: var(--ink);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding: 5px 12px;
+}
+
+/* Bottom content block */
+.ongoing__body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ongoing__name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(22px, 2.2vw, 34px);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--white);
+  line-height: 1;
+}
+
+.ongoing__desc {
+  font-size: 13px;
+  color: var(--fog);
+  line-height: 1.55;
+  font-weight: 300;
+  max-width: 420px;
+
+  /* Hidden by default, reveal on hover */
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+}
+
+.ongoing__card:hover .ongoing__desc {
+  max-height: 80px;
+  opacity: 1;
+}
+
+.ongoing__client {
+  font-size: 12px;
+  color: var(--smoke);
+  letter-spacing: 0.5px;
+}
+
+/* Progress bar */
+.ongoing__progress-wrap {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 4px;
+}
+
+.ongoing__bar {
+  flex: 1;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+}
+
+.ongoing__fill {
+  height: 100%;
+  background: var(--gold);
+  transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ongoing__pct {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  color: var(--gold);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* Meta row */
+.ongoing__meta {
+  display: flex;
+  gap: 20px;
+  font-size: 12px;
+  color: var(--smoke);
+  margin-top: 2px;
+}
+
+/* ─────────────────────────────────────────
+   Responsive
+   ───────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .ongoing__grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    height: auto;
+  }
+
+  .ongoing__card:first-child {
+    grid-row: auto;
+  }
+
+  .ongoing__card {
+    height: 380px;
+  }
+}
+
+@media (max-width: 600px) {
+  .ongoing {
+    padding: 100px 5%;
+  }
+
+  .ongoing__card {
+    height: 300px;
+  }
+
+  .ongoing__overlay {
+    padding: 20px;
+  }
+}

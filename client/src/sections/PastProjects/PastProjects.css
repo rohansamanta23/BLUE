@@ -1,0 +1,227 @@
+/* ─────────────────────────────────────────
+   PAST PROJECTS — Blue Star Engineering
+   ───────────────────────────────────────── */
+
+.past {
+  background: var(--ink);
+  padding: 160px 7%;
+}
+
+/* ── Header row ── */
+.past__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 60px;
+  gap: 40px;
+
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity   0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.past__header--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.past__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+.past__eyebrow::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.past__title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(56px, 7vw, 96px);
+  line-height: 0.88;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+/* Giant ghost number — decorative right side */
+.past__count {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(80px, 10vw, 140px);
+  color: rgba(255, 255, 255, 0.05);
+  line-height: 1;
+  white-space: nowrap;
+  /* Hangs to right edge naturally */
+}
+
+/* ── Marquee ticker ── */
+.past__marquee-wrap {
+  overflow: hidden;
+  border-top:    1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 18px 0;
+  margin-bottom: 56px;
+}
+
+.past__marquee {
+  display: flex;
+  gap: 0;
+  width: max-content;
+  animation: marqueeScroll 24s linear infinite;
+}
+
+.past__marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.past__marquee-item {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 2px;
+  color: var(--smoke);
+  white-space: nowrap;
+  padding-right: 60px;
+  transition: color 0.3s;
+}
+
+.past__marquee-item:hover {
+  color: var(--white);
+}
+
+.past__marquee-item em {
+  color: var(--gold);
+  font-style: normal;
+  margin-left: 60px;
+}
+
+/* ── Photo grid ── */
+.past__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+/* ── Card ── */
+.past__card {
+  position: relative;
+  overflow: hidden;
+  height: 300px;
+  cursor: default;
+
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity   0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.past__card--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Image zooms on hover */
+.past__img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.06);
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.past__card:hover .past__img {
+  transform: scale(1);
+}
+
+/* Overlay slides up on hover */
+.past__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(11, 14, 19, 0.95) 0%,
+    rgba(11, 14, 19, 0.10) 60%,
+    transparent            100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px 22px;
+
+  transform: translateY(12px);
+  opacity: 0.6;
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity   0.4s ease;
+}
+
+.past__card:hover .past__overlay {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.past__name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 19px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--white);
+  line-height: 1.1;
+}
+
+.past__meta {
+  display: block;
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 1px;
+  margin-top: 5px;
+}
+
+/* ─────────────────────────────────────────
+   Responsive
+   ───────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .past__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .past__count {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .past {
+    padding: 100px 5%;
+  }
+
+  .past__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+
+  .past__card {
+    height: 200px;
+  }
+
+  .past__overlay {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
