@@ -14,7 +14,7 @@ function App() {
       <Navbar />
       <Hero />       
       <About />      
-      <Services />   
+      {/* <Services />    */}
       <OngoingProjects />
       <PastProjects />  
 
