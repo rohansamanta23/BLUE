@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Blue Star Engineering Co.</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --ink:    #0b0e13;
+  --deep:   #111620;
+  --gold:   #c8922a;
+  --glow:   #e8b050;
+  --smoke:  #8a94a6;
+  --fog:    #d4dce8;
+  --paper:  #f7f5f0;
+  --white:  #ffffff;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; font-size:16px; }
+
+body {
+  font-family:'DM Sans', sans-serif;
+  background: var(--ink);
+  color: var(--white);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── CUSTOM CURSOR ── */
+.cursor {
+  width: 10px; height: 10px;
+  background: var(--gold);
+  border-radius: 50%;
+  position: fixed; top:0; left:0;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: transform 0.08s, width 0.3s, height 0.3s, background 0.3s;
+}
+.cursor-ring {
+  width: 36px; height: 36px;
+  border: 1.5px solid rgba(200,146,42,0.5);
+  border-radius: 50%;
+  position: fixed; top:0; left:0;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%,-50%);
+  transition: transform 0.18s ease, width 0.3s, height 0.3s;
+}
+body:hover .cursor { opacity:1; }
+
+/* ── NOISE OVERLAY ── */
+body::before {
+  content:'';
+  position: fixed; inset:0; z-index:0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; opacity:0.6;
+}
+
+/* ── NAVBAR ── */
+nav {
+  position: fixed; top:0; left:0; width:100%; z-index:500;
+  padding: 0 7%;
+  height: 80px;
+  display: flex; align-items:center; justify-content:space-between;
+  transition: background 0.4s, backdrop-filter 0.4s;
+}
+nav.scrolled {
+  background: rgba(11,14,19,0.9);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(200,146,42,0.2);
+}
+.logo {
+  display: flex; align-items:center; gap:14px;
+  text-decoration:none;
+  opacity:0; animation: navFadeIn 1s 0.3s ease forwards;
+}
+.logo-mark {
+  width:40px; height:40px;
+  border: 2px solid var(--gold);
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Bebas Neue'; font-size:17px; color:var(--gold);
+  transform: rotate(45deg);
+}
+.logo-mark span { transform: rotate(-45deg); display:block; }
+.logo-name {
+  font-family:'Bebas Neue'; font-size:22px;
+  letter-spacing:3px; color:var(--white);
+  line-height:1;
+}
+.logo-name small {
+  display:block; font-family:'DM Sans';
+  font-size:9px; letter-spacing:4px;
+  color:var(--gold); font-weight:500;
+  text-transform:uppercase;
+}
+.nav-links {
+  display:flex; gap:40px; list-style:none;
+  opacity:0; animation: navFadeIn 1s 0.5s ease forwards;
+}
+.nav-links a {
+  color:var(--fog); text-decoration:none;
+  font-size:12px; letter-spacing:2.5px; text-transform:uppercase;
+  font-weight:500;
+  position:relative; padding-bottom:4px;
+  transition:color 0.3s;
+}
+.nav-links a::after {
+  content:''; position:absolute; bottom:0; left:50%;
+  width:0; height:1px; background:var(--gold);
+  transform:translateX(-50%);
+  transition:width 0.4s ease;
+}
+.nav-links a:hover { color:var(--white); }
+.nav-links a:hover::after { width:100%; }
+.nav-cta {
+  border:1px solid var(--gold) !important;
+  color:var(--gold) !important;
+  padding:8px 22px !important;
+  transition:background 0.3s, color 0.3s !important;
+}
+.nav-cta:hover { background:var(--gold) !important; color:var(--ink) !important; }
+.nav-cta::after { display:none !important; }
+
+@keyframes navFadeIn {
+  from { opacity:0; transform:translateY(-10px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* ── HERO ── */
+#home {
+  height:100vh; min-height:700px;
+  position:relative;
+  display:flex; align-items:center;
+  overflow:hidden;
+}
+.hero-video-bg {
+  position:absolute; inset:0;
+  background:
+    linear-gradient(to bottom, rgba(11,14,19,0.3) 0%, rgba(11,14,19,0.7) 60%, rgba(11,14,19,1) 100%),
+    url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1800&q=85') center/cover no-repeat;
+  transform:scale(1.08);
+  animation: heroZoom 12s ease forwards;
+}
+@keyframes heroZoom {
+  to { transform:scale(1); }
+}
+.hero-content {
+  position:relative; z-index:2;
+  padding: 0 7%; max-width:100%;
+}
+.hero-line {
+  overflow:hidden; display:block;
+  font-family:'Bebas Neue';
+  font-size: clamp(80px, 13vw, 200px);
+  line-height:0.88;
+  letter-spacing:-2px;
+  text-transform:uppercase;
+  color:var(--white);
+}
+.hero-line span {
+  display:block;
+  transform:translateY(110%);
+  animation: lineReveal 1s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.hero-line:nth-child(1) span { animation-delay:0.4s; }
+.hero-line:nth-child(2) span { animation-delay:0.6s; color:var(--gold); }
+.hero-line:nth-child(3) span { animation-delay:0.8s; }
+
+@keyframes lineReveal {
+  to { transform:translateY(0); }
+}
+
+.hero-sub-row {
+  display:flex; align-items:flex-end; justify-content:space-between;
+  margin-top:60px; gap:40px;
+  opacity:0; animation: fadeSlideUp 1s 1.2s ease forwards;
+}
+.hero-desc {
+  font-size:17px; color:var(--smoke); font-weight:300;
+  line-height:1.75; max-width:420px;
+}
+.hero-desc em { color:var(--fog); font-style:normal; font-weight:400; }
+.hero-actions { display:flex; flex-direction:column; align-items:flex-end; gap:20px; }
+.btn-hero {
+  display:inline-flex; align-items:center; gap:14px;
+  background:var(--gold); color:var(--ink);
+  padding:18px 38px;
+  font-family:'Bebas Neue'; font-size:18px; letter-spacing:2px;
+  text-decoration:none;
+  transition:background 0.3s, gap 0.3s;
+}
+.btn-hero:hover { background:var(--glow); gap:20px; }
+.btn-hero-ghost {
+  display:inline-flex; align-items:center; gap:12px;
+  border:1px solid rgba(200,146,42,0.4); color:var(--fog);
+  padding:18px 38px;
+  font-family:'Bebas Neue'; font-size:18px; letter-spacing:2px;
+  text-decoration:none;
+  transition:border-color 0.3s, color 0.3s, gap 0.3s;
+}
+.btn-hero-ghost:hover { border-color:var(--gold); color:var(--white); gap:14px; }
+
+.hero-scrollbar {
+  position:absolute; bottom:48px; left:7%;
+  display:flex; align-items:center; gap:16px;
+  opacity:0; animation:fadeSlideUp 1s 1.6s ease forwards;
+  z-index:2;
+}
+.scroll-line {
+  width:60px; height:1px; background:var(--gold);
+  position:relative; overflow:hidden;
+}
+.scroll-line::after {
+  content:''; position:absolute; top:0; left:-100%;
+  width:100%; height:100%; background:var(--white);
+  animation:scanLine 2s 2s ease infinite;
+}
+@keyframes scanLine {
+  to { left:200%; }
+}
+.scroll-label {
+  font-size:10px; letter-spacing:4px;
+  text-transform:uppercase; color:var(--smoke);
+}
+
+.hero-counter {
+  position:absolute; right:7%; bottom:48px;
+  display:flex; gap:56px; z-index:2;
+  opacity:0; animation:fadeSlideUp 1s 1.4s ease forwards;
+}
+.hc-item { text-align:center; }
+.hc-num {
+  font-family:'Bebas Neue'; font-size:56px;
+  color:var(--white); line-height:1;
+  position:relative; display:inline-block;
+}
+.hc-num::after {
+  content:'+'; color:var(--gold);
+  font-size:30px; vertical-align:super;
+}
+.hc-label {
+  font-size:10px; letter-spacing:3px;
+  color:var(--smoke); text-transform:uppercase;
+  margin-top:4px;
+}
+
+/* ── ABOUT ── */
+#about {
+  background:var(--paper); color:var(--ink);
+  padding:160px 7%;
+  display:grid; grid-template-columns:1fr 1.1fr;
+  gap:120px; align-items:center;
+}
+.about-left { position:relative; }
+.about-img-wrap {
+  position:relative; overflow:hidden;
+}
+.about-img {
+  width:100%; height:560px;
+  background:url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=900&q=80') center/cover;
+  display:block;
+  transform:scale(1.05);
+  transition:transform 8s ease;
+}
+.about-img-wrap:hover .about-img { transform:scale(1); }
+.about-year {
+  position:absolute; bottom:-40px; right:-40px;
+  background:var(--ink); color:var(--white);
+  padding:36px 40px;
+  z-index:2;
+}
+.about-year big {
+  font-family:'Bebas Neue'; font-size:72px;
+  color:var(--gold); line-height:1; display:block;
+}
+.about-year span {
+  font-size:11px; letter-spacing:3px;
+  text-transform:uppercase; color:var(--fog);
+}
+.about-tag {
+  display:inline-flex; align-items:center; gap:10px;
+  font-size:11px; letter-spacing:4px; text-transform:uppercase;
+  color:var(--gold); margin-bottom:24px;
+}
+.about-tag::before {
+  content:''; width:32px; height:1px; background:var(--gold);
+}
+.about-title {
+  font-family:'Bebas Neue';
+  font-size: clamp(52px, 5.5vw, 80px);
+  line-height:0.9; color:var(--ink);
+  text-transform:uppercase; margin-bottom:36px;
+}
+.about-body {
+  font-size:17px; color:#4a5568; line-height:1.85;
+  font-weight:300; margin-bottom:48px;
+}
+.about-pillars {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:2px; margin-bottom:48px;
+}
+.pillar {
+  background:var(--ink); color:var(--white);
+  padding:28px 24px;
+  transition:background 0.3s;
+}
+.pillar:hover { background:#1c2535; }
+.pillar h4 {
+  font-family:'Bebas Neue'; font-size:18px;
+  letter-spacing:1px; color:var(--gold);
+  margin-bottom:6px;
+}
+.pillar p { font-size:13px; color:var(--fog); line-height:1.5; }
+
+/* ── SERVICES ── */
+#services {
+  background:var(--ink); padding:160px 7%;
+}
+.services-header {
+  display:flex; justify-content:space-between; align-items:flex-end;
+  margin-bottom:100px;
+}
+.services-title {
+  font-family:'Bebas Neue';
+  font-size:clamp(60px,7vw,100px);
+  line-height:0.88; text-transform:uppercase; color:var(--white);
+}
+.services-title span { display:block; color:var(--gold); }
+.services-note {
+  max-width:320px; font-size:15px; color:var(--smoke);
+  line-height:1.7; font-weight:300;
+}
+.services-list { display:flex; flex-direction:column; }
+.service-row {
+  display:flex; align-items:center;
+  padding:40px 0;
+  border-top:1px solid rgba(255,255,255,0.07);
+  gap:60px; cursor:default;
+  transition:padding 0.4s;
+  position:relative; overflow:hidden;
+}
+.service-row::before {
+  content:''; position:absolute; left:0; top:0;
+  width:0; height:100%;
+  background:rgba(200,146,42,0.05);
+  transition:width 0.5s ease;
+}
+.service-row:hover::before { width:100%; }
+.service-row:hover { padding-left:20px; }
+.service-row:last-child { border-bottom:1px solid rgba(255,255,255,0.07); }
+.svc-num {
+  font-family:'Bebas Neue'; font-size:14px;
+  color:var(--gold); letter-spacing:2px;
+  min-width:36px;
+}
+.svc-name {
+  font-family:'Bebas Neue'; font-size:clamp(28px,3.5vw,48px);
+  color:var(--white); text-transform:uppercase;
+  letter-spacing:1px; flex:1;
+  transition:color 0.3s;
+}
+.service-row:hover .svc-name { color:var(--glow); }
+.svc-desc {
+  max-width:380px; font-size:14px; color:var(--smoke);
+  line-height:1.6; font-weight:300;
+}
+.svc-arrow {
+  font-size:24px; color:var(--gold);
+  transform:translateX(-10px); opacity:0;
+  transition:transform 0.3s, opacity 0.3s;
+}
+.service-row:hover .svc-arrow { transform:translateX(0); opacity:1; }
+
+/* ── ONGOING PROJECTS ── */
+#ongoing {
+  background:var(--paper); color:var(--ink);
+  padding:160px 7%;
+}
+.section-eyebrow {
+  display:inline-flex; align-items:center; gap:12px;
+  font-size:11px; letter-spacing:4px; text-transform:uppercase;
+  color:var(--gold); margin-bottom:28px;
+}
+.section-eyebrow::before {
+  content:''; width:32px; height:1px; background:var(--gold);
+}
+.big-title {
+  font-family:'Bebas Neue';
+  font-size:clamp(56px,7vw,96px);
+  line-height:0.88; text-transform:uppercase;
+  color:var(--ink); margin-bottom:80px;
+}
+.big-title.light { color:var(--white); }
+.ongoing-grid {
+  display:grid;
+  grid-template-columns:1.4fr 1fr;
+  grid-template-rows:auto auto;
+  gap:20px;
+}
+.og-card {
+  position:relative; overflow:hidden;
+  background:var(--ink);
+}
+.og-card:first-child {
+  grid-row:1/3;
+}
+.og-img {
+  width:100%; height:100%; min-height:300px;
+  background-size:cover; background-position:center;
+  display:block;
+  transition:transform 0.8s ease;
+  transform:scale(1.04);
+}
+.og-card:hover .og-img { transform:scale(1); }
+.og-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(11,14,19,0.92) 0%, transparent 55%);
+  display:flex; flex-direction:column; justify-content:flex-end;
+  padding:36px;
+}
+.og-status {
+  display:inline-block;
+  background:var(--gold); color:var(--ink);
+  font-size:10px; font-weight:700; letter-spacing:2.5px;
+  text-transform:uppercase; padding:5px 12px;
+  margin-bottom:16px; align-self:flex-start;
+}
+.og-title {
+  font-family:'Bebas Neue'; font-size:clamp(26px,2.5vw,38px);
+  text-transform:uppercase; letter-spacing:1px; color:var(--white);
+  margin-bottom:8px; line-height:1;
+}
+.og-sub { font-size:13px; color:var(--fog); margin-bottom:20px; }
+.og-progress-wrap { display:flex; align-items:center; gap:16px; }
+.og-bar { flex:1; height:3px; background:rgba(255,255,255,0.15); }
+.og-fill { height:100%; background:var(--gold); transition:width 1.5s ease; }
+.og-pct { font-family:'Bebas Neue'; font-size:20px; color:var(--gold); }
+
+/* ── PAST PROJECTS ── */
+#past {
+  background:var(--ink); padding:160px 7%;
+}
+.past-intro {
+  display:flex; justify-content:space-between; align-items:flex-end;
+  margin-bottom:80px; gap:40px;
+}
+.past-count {
+  font-family:'Bebas Neue'; font-size:clamp(60px,8vw,120px);
+  color:rgba(255,255,255,0.06); line-height:1;
+  white-space:nowrap;
+}
+.past-marquee-wrap {
+  overflow:hidden; margin-bottom:48px;
+  border-top:1px solid rgba(255,255,255,0.07);
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  padding:20px 0;
+}
+.past-marquee {
+  display:flex; gap:80px; width:max-content;
+  animation:marquee 20s linear infinite;
+}
+.past-marquee span {
+  font-family:'Bebas Neue'; font-size:22px;
+  letter-spacing:2px; color:var(--smoke); white-space:nowrap;
+}
+.past-marquee span em { color:var(--gold); font-style:normal; margin-right:80px; }
+@keyframes marquee {
+  from { transform:translateX(0); }
+  to   { transform:translateX(-50%); }
+}
+.past-grid {
+  display:grid; grid-template-columns:repeat(4,1fr); gap:12px;
+}
+.past-card {
+  position:relative; overflow:hidden; height:300px;
+}
+.past-card-img {
+  width:100%; height:100%;
+  background-size:cover; background-position:center;
+  transition:transform 0.7s ease;
+  transform:scale(1.05);
+}
+.past-card:hover .past-card-img { transform:scale(1); }
+.past-card-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(11,14,19,0.95) 0%, rgba(11,14,19,0.1) 60%);
+  display:flex; flex-direction:column; justify-content:flex-end;
+  padding:24px;
+  transform:translateY(20px); opacity:0.7;
+  transition:transform 0.4s, opacity 0.4s;
+}
+.past-card:hover .past-card-overlay { transform:translateY(0); opacity:1; }
+.past-card-overlay h4 {
+  font-family:'Bebas Neue'; font-size:20px;
+  text-transform:uppercase; color:var(--white); line-height:1;
+}
+.past-card-overlay span { font-size:12px; color:var(--gold); letter-spacing:1px; margin-top:4px; display:block; }
+
+/* ── CAREERS ── */
+#careers {
+  background:var(--paper); color:var(--ink);
+  padding:160px 7%;
+}
+.careers-top {
+  display:grid; grid-template-columns:1fr 1fr; gap:80px;
+  margin-bottom:80px; align-items:end;
+}
+.careers-desc {
+  font-size:17px; color:#4a5568; line-height:1.85; font-weight:300;
+}
+.job-list { display:flex; flex-direction:column; }
+.job-item {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:36px 0;
+  border-top:1px solid rgba(11,14,19,0.1);
+  gap:40px; cursor:default;
+  transition:padding 0.3s;
+  position:relative;
+}
+.job-item::after {
+  content:''; position:absolute; bottom:0; left:0;
+  width:0; height:1px; background:var(--gold);
+  transition:width 0.5s ease;
+}
+.job-item:hover::after { width:100%; }
+.job-item:hover { padding-left:12px; }
+.job-item:last-child { border-bottom:1px solid rgba(11,14,19,0.1); }
+.job-title {
+  font-family:'Bebas Neue'; font-size:clamp(22px,2.5vw,32px);
+  text-transform:uppercase; color:var(--ink); letter-spacing:0.5px;
+}
+.job-meta { font-size:13px; color:#718096; margin-top:4px; }
+.job-right { display:flex; align-items:center; gap:24px; flex-shrink:0; }
+.job-type {
+  font-size:10px; letter-spacing:2.5px; text-transform:uppercase;
+  color:var(--gold); border:1px solid var(--gold);
+  padding:5px 14px;
+}
+.job-arrow {
+  width:44px; height:44px; border:1px solid rgba(11,14,19,0.2);
+  display:flex; align-items:center; justify-content:center;
+  font-size:18px; color:var(--ink);
+  transition:background 0.3s, color 0.3s, border-color 0.3s;
+}
+.job-item:hover .job-arrow {
+  background:var(--gold); color:var(--ink); border-color:var(--gold);
+}
+
+/* ── CONTACT ── */
+#contact {
+  background:var(--ink); padding:160px 7%;
+}
+.contact-grid {
+  display:grid; grid-template-columns:1fr 1.2fr; gap:120px; align-items:start;
+}
+.contact-headline {
+  font-family:'Bebas Neue';
+  font-size:clamp(60px,7.5vw,110px);
+  line-height:0.88; text-transform:uppercase; color:var(--white);
+  margin-bottom:60px;
+}
+.contact-headline span { display:block; color:var(--gold); }
+.contact-item {
+  margin-bottom:40px; padding-bottom:40px;
+  border-bottom:1px solid rgba(255,255,255,0.07);
+}
+.contact-item:last-child { border-bottom:none; }
+.contact-item label {
+  font-size:10px; letter-spacing:3px; text-transform:uppercase;
+  color:var(--gold); display:block; margin-bottom:8px;
+}
+.contact-item p { font-size:16px; color:var(--fog); font-weight:300; }
+.form-field { margin-bottom:28px; }
+.form-field label {
+  display:block; font-size:10px; letter-spacing:3px;
+  text-transform:uppercase; color:var(--smoke); margin-bottom:12px;
+}
+.form-field input,
+.form-field textarea,
+.form-field select {
+  width:100%; background:rgba(255,255,255,0.04);
+  border:none; border-bottom:1px solid rgba(255,255,255,0.15);
+  color:var(--white); font-family:'DM Sans'; font-size:16px;
+  font-weight:300; padding:14px 0;
+  outline:none;
+  transition:border-color 0.3s;
+}
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus {
+  border-color:var(--gold);
+}
+.form-field select { appearance:none; cursor:pointer; }
+.form-field select option { background:var(--deep); color:var(--white); }
+.form-field textarea { resize:none; height:100px; }
+.form-row-2 { display:grid; grid-template-columns:1fr 1fr; gap:28px; }
+.btn-submit {
+  margin-top:12px;
+  display:inline-flex; align-items:center; gap:14px;
+  background:transparent; border:1px solid var(--gold);
+  color:var(--gold); padding:18px 40px;
+  font-family:'Bebas Neue'; font-size:18px; letter-spacing:2.5px;
+  cursor:pointer;
+  transition:background 0.3s, color 0.3s, gap 0.3s;
+}
+.btn-submit:hover { background:var(--gold); color:var(--ink); gap:20px; }
+
+/* ── FOOTER ── */
+footer {
+  background:#060a10; padding:80px 7% 40px;
+  border-top:1px solid rgba(200,146,42,0.15);
+}
+.footer-top {
+  display:flex; justify-content:space-between; align-items:flex-start;
+  margin-bottom:80px; gap:60px;
+}
+.footer-brand-name {
+  font-family:'Bebas Neue'; font-size:52px;
+  color:var(--white); letter-spacing:2px; line-height:1;
+  margin-bottom:8px;
+}
+.footer-tagline {
+  font-size:13px; color:var(--smoke); letter-spacing:2px;
+  text-transform:uppercase;
+}
+.footer-nav { display:flex; gap:80px; }
+.footer-col h5 {
+  font-size:10px; letter-spacing:3.5px; text-transform:uppercase;
+  color:var(--gold); margin-bottom:24px;
+}
+.footer-col ul { list-style:none; }
+.footer-col ul li { margin-bottom:12px; }
+.footer-col ul li a {
+  color:var(--smoke); text-decoration:none; font-size:14px;
+  font-weight:300; transition:color 0.3s;
+}
+.footer-col ul li a:hover { color:var(--white); }
+.footer-bottom {
+  display:flex; justify-content:space-between; align-items:center;
+  padding-top:40px; border-top:1px solid rgba(255,255,255,0.05);
+}
+.footer-bottom p { font-size:12px; color:var(--smoke); }
+.footer-bottom .gold { color:var(--gold); }
+
+/* ── SCROLL REVEAL ── */
+.reveal {
+  opacity:0; transform:translateY(50px);
+  transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1),
+              transform 0.9s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.visible { opacity:1; transform:none; }
+.reveal-left {
+  opacity:0; transform:translateX(-60px);
+  transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1),
+              transform 0.9s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal-left.visible { opacity:1; transform:none; }
+.reveal-right {
+  opacity:0; transform:translateX(60px);
+  transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1),
+              transform 0.9s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal-right.visible { opacity:1; transform:none; }
+.reveal-delay-1 { transition-delay:0.1s; }
+.reveal-delay-2 { transition-delay:0.2s; }
+.reveal-delay-3 { transition-delay:0.3s; }
+.reveal-delay-4 { transition-delay:0.4s; }
+.reveal-delay-5 { transition-delay:0.5s; }
+
+@keyframes fadeSlideUp {
+  from { opacity:0; transform:translateY(24px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width:1024px) {
+  #about { grid-template-columns:1fr; gap:80px; }
+  .about-year { right:0; }
+  .ongoing-grid { grid-template-columns:1fr; }
+  .og-card:first-child { grid-row:auto; }
+  .past-grid { grid-template-columns:repeat(2,1fr); }
+  .contact-grid { grid-template-columns:1fr; gap:60px; }
+  .footer-top { flex-direction:column; gap:40px; }
+  .careers-top { grid-template-columns:1fr; gap:40px; }
+}
+@media (max-width:768px) {
+  #about,#ongoing,#past,#careers,#contact,#services,footer { padding:100px 5%; }
+  .services-header { flex-direction:column; align-items:flex-start; }
+  .svc-desc { display:none; }
+  .hero-sub-row { flex-direction:column; align-items:flex-start; }
+  .hero-counter { display:none; }
+  .past-intro { flex-direction:column; }
+  .footer-nav { gap:40px; flex-wrap:wrap; }
+  .nav-links { display:none; }
+  .form-row-2 { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#home" class="logo">
+    <div class="logo-mark"><span>BS</span></div>
+    <div class="logo-name">
+      Blue Star
+      <small>Engineering Co.</small>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#ongoing">Projects</a></li>
+    <li><a href="#careers">Careers</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-video-bg"></div>
+  <div class="hero-content">
+    <div class="hero-line"><span>We</span></div>
+    <div class="hero-line"><span>Engineer</span></div>
+    <div class="hero-line"><span>India.</span></div>
+    <div class="hero-sub-row">
+      <p class="hero-desc">
+        Blue Star Engineering Co. delivers <em>world-class civil, structural, and MEP solutions</em> — from foundation to finish, for 20 years running.
+      </p>
+      <div class="hero-actions">
+        <a href="#ongoing" class="btn-hero">View Projects →</a>
+        <a href="#contact" class="btn-hero-ghost">Get in Touch ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scrollbar">
+    <div class="scroll-line"></div>
+    <span class="scroll-label">Scroll to explore</span>
+  </div>
+  <div class="hero-counter">
+    <div class="hc-item">
+      <div class="hc-num">20</div>
+      <div class="hc-label">Years</div>
+    </div>
+    <div class="hc-item">
+      <div class="hc-num">350</div>
+      <div class="hc-label">Projects</div>
+    </div>
+    <div class="hc-item">
+      <div class="hc-num">45</div>
+      <div class="hc-label">Engineers</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-left reveal-left">
+    <div class="about-img-wrap">
+      <div class="about-img"></div>
+    </div>
+    <div class="about-year">
+      <big>2003</big>
+      <span>Founded in Bengaluru</span>
+    </div>
+  </div>
+  <div class="reveal-right">
+    <div class="about-tag">Our Story</div>
+    <h2 class="about-title">Engineering<br/>That Moves<br/>India Forward</h2>
+    <p class="about-body">
+      Blue Star Engineering Co. has been a trusted name in civil and mechanical engineering for over two decades. Based in Bengaluru, we execute large-scale infrastructure, industrial, and commercial projects with unwavering precision and integrity.
+    </p>
+    <div class="about-pillars">
+      <div class="pillar">
+        <h4>ISO Certified</h4>
+        <p>ISO 9001:2015 quality management across all operations.</p>
+      </div>
+      <div class="pillar">
+        <h4>In-House Teams</h4>
+        <p>Design, procurement, and construction under one roof.</p>
+      </div>
+      <div class="pillar">
+        <h4>Pan-India Reach</h4>
+        <p>Active projects across Karnataka, Tamil Nadu, Kerala, and Maharashtra.</p>
+      </div>
+      <div class="pillar">
+        <h4>Safety First</h4>
+        <p>Zero-compromise HSE standards on every worksite.</p>
+      </div>
+    </div>
+    <a href="#contact" class="btn-hero">Work With Us →</a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header reveal">
+    <h2 class="services-title">What<br/><span>We Do</span></h2>
+    <p class="services-note">From concept to handover — we cover every phase of your engineering project with depth and precision.</p>
+  </div>
+  <div class="services-list">
+    <div class="service-row reveal reveal-delay-1">
+      <span class="svc-num">01</span>
+      <span class="svc-name">Civil Construction</span>
+      <span class="svc-desc">Industrial buildings, warehouses, factories, and large-scale commercial structures built to code and built to last.</span>
+      <span class="svc-arrow">→</span>
+    </div>
+    <div class="service-row reveal reveal-delay-2">
+      <span class="svc-num">02</span>
+      <span class="svc-name">MEP Engineering</span>
+      <span class="svc-desc">Complete Mechanical, Electrical, and Plumbing design and installation for residential and commercial complexes.</span>
+      <span class="svc-arrow">→</span>
+    </div>
+    <div class="service-row reveal reveal-delay-3">
+      <span class="svc-num">03</span>
+      <span class="svc-name">Structural Engineering</span>
+      <span class="svc-desc">Detailed structural analysis for RCC and steel structures, including retrofitting and repair works.</span>
+      <span class="svc-arrow">→</span>
+    </div>
+    <div class="service-row reveal reveal-delay-4">
+      <span class="svc-num">04</span>
+      <span class="svc-name">Infrastructure & Roads</span>
+      <span class="svc-desc">Highway construction, flyovers, drainage systems, and urban infrastructure development.</span>
+      <span class="svc-arrow">→</span>
+    </div>
+    <div class="service-row reveal reveal-delay-5">
+      <span class="svc-num">05</span>
+      <span class="svc-name">Plant Maintenance</span>
+      <span class="svc-desc">Scheduled and emergency maintenance for industrial plants and utilities to minimize downtime.</span>
+      <span class="svc-arrow">→</span>
+    </div>
+    <div class="service-row reveal">
+      <span class="svc-num">06</span>
+      <span class="svc-name">Design & Consultancy</span>
+      <span class="svc-desc">End-to-end consultancy from feasibility and design to project management and final handover.</span>
+      <span class="svc-arrow">→</span>
+    </div>
+  </div>
+</section>
+
+<!-- ONGOING PROJECTS -->
+<section id="ongoing">
+  <div class="reveal">
+    <div class="section-eyebrow">Active Worksites</div>
+    <h2 class="big-title">Ongoing<br/>Projects</h2>
+  </div>
+  <div class="ongoing-grid">
+    <div class="og-card reveal reveal-delay-1">
+      <div class="og-img" style="background-image:url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=900&q=80')"></div>
+      <div class="og-overlay">
+        <div class="og-status">In Progress</div>
+        <h3 class="og-title">Whitefield Tech Park Phase 3</h3>
+        <p class="og-sub">6-storey commercial complex · Prestige Group · Bengaluru</p>
+        <div class="og-progress-wrap">
+          <div class="og-bar"><div class="og-fill" style="width:72%" data-width="72"></div></div>
+          <span class="og-pct">72%</span>
+        </div>
+      </div>
+    </div>
+    <div class="og-card reveal reveal-delay-2">
+      <div class="og-img" style="background-image:url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&q=80')"></div>
+      <div class="og-overlay">
+        <div class="og-status">In Progress</div>
+        <h3 class="og-title">NH-44 Flyover Expansion</h3>
+        <p class="og-sub">2.4 km highway expansion · NHAI · Karnataka</p>
+        <div class="og-progress-wrap">
+          <div class="og-bar"><div class="og-fill" style="width:45%" data-width="45"></div></div>
+          <span class="og-pct">45%</span>
+        </div>
+      </div>
+    </div>
+    <div class="og-card reveal reveal-delay-3">
+      <div class="og-img" style="background-image:url('https://images.unsplash.com/photo-1590486803833-1c5dc8ddd4c8?w=700&q=80')"></div>
+      <div class="og-overlay">
+        <div class="og-status">Near Completion</div>
+        <h3 class="og-title">Mysuru Industrial Warehouse</h3>
+        <p class="og-sub">100,000 sq.ft steel-frame warehouse · Mysuru</p>
+        <div class="og-progress-wrap">
+          <div class="og-bar"><div class="og-fill" style="width:88%" data-width="88"></div></div>
+          <span class="og-pct">88%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAST PROJECTS -->
+<section id="past">
+  <div class="past-intro">
+    <div class="reveal">
+      <div class="section-eyebrow">Delivered</div>
+      <h2 class="big-title light">Past<br/>Projects</h2>
+    </div>
+    <div class="past-count reveal">350+</div>
+  </div>
+  <div class="past-marquee-wrap">
+    <div class="past-marquee">
+      <span>Hebbal Metro Depot <em>·</em></span>
+      <span>Kochi Port Terminal <em>·</em></span>
+      <span>Hyderabad Data Centre <em>·</em></span>
+      <span>Pune Expressway Bridge <em>·</em></span>
+      <span>Chennai IT Campus <em>·</em></span>
+      <span>Mangaluru Port <em>·</em></span>
+      <span>Hosur Auto Plant <em>·</em></span>
+      <span>Goa Luxury Resort <em>·</em></span>
+      <!-- duplicate for seamless loop -->
+      <span>Hebbal Metro Depot <em>·</em></span>
+      <span>Kochi Port Terminal <em>·</em></span>
+      <span>Hyderabad Data Centre <em>·</em></span>
+      <span>Pune Expressway Bridge <em>·</em></span>
+      <span>Chennai IT Campus <em>·</em></span>
+      <span>Mangaluru Port <em>·</em></span>
+      <span>Hosur Auto Plant <em>·</em></span>
+      <span>Goa Luxury Resort <em>·</em></span>
+    </div>
+  </div>
+  <div class="past-grid">
+    <div class="past-card reveal reveal-delay-1">
+      <div class="past-card-img" style="background-image:url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=500&q=80')"></div>
+      <div class="past-card-overlay">
+        <h4>Hebbal Metro Depot</h4>
+        <span>Civil & Structural · 2023</span>
+      </div>
+    </div>
+    <div class="past-card reveal reveal-delay-2">
+      <div class="past-card-img" style="background-image:url('https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=500&q=80')"></div>
+      <div class="past-card-overlay">
+        <h4>Kochi Port Terminal</h4>
+        <span>MEP & Infrastructure · 2022</span>
+      </div>
+    </div>
+    <div class="past-card reveal reveal-delay-3">
+      <div class="past-card-img" style="background-image:url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=500&q=80')"></div>
+      <div class="past-card-overlay">
+        <h4>Hyderabad Data Centre</h4>
+        <span>MEP · Electrical · 2022</span>
+      </div>
+    </div>
+    <div class="past-card reveal reveal-delay-4">
+      <div class="past-card-img" style="background-image:url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=500&q=80')"></div>
+      <div class="past-card-overlay">
+        <h4>Pune Expressway Bridge</h4>
+        <span>Structural Engineering · 2021</span>
+      </div>
+    </div>
+    <div class="past-card reveal reveal-delay-1">
+      <div class="past-card-img" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80')"></div>
+      <div class="past-card-overlay">
+        <h4>Chennai IT Campus</h4>
+        <span>Civil & Interior · 2021</span>
+      </div>
+    </div>
+    <div class="past-card reveal reveal-delay-2">
+      <div class="past-card-img" style="background-image:url('https://images.unsplash.com/photo-1524230572899-a752b3835840?w=500&q=80')"></div>
+      <div class="past-card-overlay">
+        <h4>Mangaluru Port Expansion</h4>
+        <span>Infrastructure · 2020</span>
+      </div>
+    </div>
+    <div class="past-card reveal reveal-delay-3">
+      <div class="past-card-img" style="background-image:url('https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=500&q=80')"></div>
+      <div class="past-card-overlay">
+        <h4>Hosur Auto Plant</h4>
+        <span>Industrial · MEP · 2020</span>
+      </div>
+    </div>
+    <div class="past-card reveal reveal-delay-4">
+      <div class="past-card-img" style="background-image:url('https://images.unsplash.com/photo-1529088746738-c4c0a152fb2c?w=500&q=80')"></div>
+      <div class="past-card-overlay">
+        <h4>Goa Luxury Resort</h4>
+        <span>Civil · Plumbing · 2019</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAREERS -->
+<section id="careers">
+  <div class="careers-top">
+    <div class="reveal-left">
+      <div class="about-tag">Join Our Team</div>
+      <h2 class="about-title" style="font-size:clamp(48px,5.5vw,72px)">Build Your<br/>Career With<br/>Blue Star</h2>
+    </div>
+    <p class="careers-desc reveal-right">
+      We're always looking for talented engineers, project managers, and support staff to grow with us. Competitive compensation, safety-first culture, and real career progression.
+      <br/><br/>
+      Send your CV to <strong>careers@bluestarengineering.in</strong>
+    </p>
+  </div>
+  <div class="job-list">
+    <div class="job-item reveal">
+      <div>
+        <div class="job-title">Senior Structural Engineer</div>
+        <div class="job-meta">Bengaluru &nbsp;·&nbsp; 8–12 yrs &nbsp;·&nbsp; Full-time</div>
+      </div>
+      <div class="job-right">
+        <span class="job-type">Hiring</span>
+        <div class="job-arrow">→</div>
+      </div>
+    </div>
+    <div class="job-item reveal reveal-delay-1">
+      <div>
+        <div class="job-title">MEP Project Manager</div>
+        <div class="job-meta">Hyderabad / Bengaluru &nbsp;·&nbsp; 6–10 yrs &nbsp;·&nbsp; Full-time</div>
+      </div>
+      <div class="job-right">
+        <span class="job-type">Hiring</span>
+        <div class="job-arrow">→</div>
+      </div>
+    </div>
+    <div class="job-item reveal reveal-delay-2">
+      <div>
+        <div class="job-title">Civil Site Engineer</div>
+        <div class="job-meta">Multiple Locations &nbsp;·&nbsp; 2–5 yrs &nbsp;·&nbsp; Full-time</div>
+      </div>
+      <div class="job-right">
+        <span class="job-type">Hiring</span>
+        <div class="job-arrow">→</div>
+      </div>
+    </div>
+    <div class="job-item reveal reveal-delay-3">
+      <div>
+        <div class="job-title">AutoCAD / Revit Designer</div>
+        <div class="job-meta">Bengaluru &nbsp;·&nbsp; 1–3 yrs &nbsp;·&nbsp; Full-time</div>
+      </div>
+      <div class="job-right">
+        <span class="job-type">Hiring</span>
+        <div class="job-arrow">→</div>
+      </div>
+    </div>
+    <div class="job-item reveal reveal-delay-4">
+      <div>
+        <div class="job-title">Safety Officer (HSE)</div>
+        <div class="job-meta">Bengaluru &nbsp;·&nbsp; 3+ yrs &nbsp;·&nbsp; Full-time</div>
+      </div>
+      <div class="job-right">
+        <span class="job-type">Hiring</span>
+        <div class="job-arrow">→</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div class="reveal-left">
+      <h2 class="contact-headline">Let's<br/><span>Build</span><br/>Together</h2>
+      <div class="contact-item">
+        <label>Address</label>
+        <p>42, 3rd Floor, Industrial Layout,<br/>Koramangala, Bengaluru – 560034</p>
+      </div>
+      <div class="contact-item">
+        <label>Phone</label>
+        <p>+91 80 4567 8900</p>
+      </div>
+      <div class="contact-item">
+        <label>Email</label>
+        <p>info@bluestarengineering.in</p>
+      </div>
+    </div>
+    <div class="reveal-right">
+      <div class="form-row-2">
+        <div class="form-field">
+          <label>First Name</label>
+          <input type="text" placeholder="Rohan"/>
+        </div>
+        <div class="form-field">
+          <label>Last Name</label>
+          <input type="text" placeholder="Sharma"/>
+        </div>
+      </div>
+      <div class="form-field">
+        <label>Email Address</label>
+        <input type="email" placeholder="you@example.com"/>
+      </div>
+      <div class="form-field">
+        <label>Phone Number</label>
+        <input type="tel" placeholder="+91 98765 43210"/>
+      </div>
+      <div class="form-field">
+        <label>Service Required</label>
+        <select>
+          <option value="">Select a service…</option>
+          <option>Civil Construction</option>
+          <option>MEP Engineering</option>
+          <option>Structural Engineering</option>
+          <option>Infrastructure & Roads</option>
+          <option>Plant Maintenance</option>
+          <option>Design & Consultancy</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label>Message</label>
+        <textarea placeholder="Tell us about your project…"></textarea>
+      </div>
+      <button class="btn-submit" onclick="alert('Message sent! We\'ll be in touch within 24 hours.')">
+        Send Message →
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-name">Blue Star<br/>Engineering</div>
+      <div class="footer-tagline">Built for India. Built to Last.</div>
+    </div>
+    <div class="footer-nav">
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#ongoing">Ongoing Projects</a></li>
+          <li><a href="#past">Past Projects</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Work</h5>
+        <ul>
+          <li><a href="#services">Civil Construction</a></li>
+          <li><a href="#services">MEP Engineering</a></li>
+          <li><a href="#services">Structural Works</a></li>
+          <li><a href="#services">Consultancy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Connect</h5>
+        <ul>
+          <li><a href="#careers">Careers</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 <span class="gold">Blue Star Engineering Co.</span> · Bengaluru, India</p>
+    <p>ISO 9001:2015 Certified</p>
+  </div>
+</footer>
+
+<script>
+// Custom cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top  = e.clientY + 'px';
+  setTimeout(() => {
+    ring.style.left = e.clientX + 'px';
+    ring.style.top  = e.clientY + 'px';
+  }, 60);
+});
+document.querySelectorAll('a,button,.service-row,.job-item,.past-card').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.style.width = '18px'; cursor.style.height = '18px';
+    ring.style.width = '56px'; ring.style.height = '56px';
+  });
+  el.addEventListener('mouseleave', () => {
+    cursor.style.width = '10px'; cursor.style.height = '10px';
+    ring.style.width = '36px'; ring.style.height = '36px';
+  });
+});
+
+// Navbar scroll
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Scroll reveal
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el => obs.observe(el));
+
+// Stagger children of sections
+document.querySelectorAll('.past-grid,.job-list,.services-list').forEach(parent => {
+  [...parent.children].forEach((child, i) => {
+    child.style.transitionDelay = (i * 0.07) + 's';
+  });
+});
+</script>
+</body>
+</html>
