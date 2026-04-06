@@ -1,0 +1,247 @@
+/* ─────────────────────────────────────────
+   FOOTER — Blue Star Engineering
+   ───────────────────────────────────────── */
+
+.footer {
+  background: #060a10;
+  padding: 100px 7% 40px;
+  border-top: 1px solid rgba(200, 146, 42, 0.15);
+}
+
+/* ─────────────────────────────────────────
+   Top row
+   ───────────────────────────────────────── */
+.footer__top {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 80px;
+  margin-bottom: 72px;
+}
+
+/* ── Brand block ── */
+.footer__brand {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* Logo */
+.footer__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  width: fit-content;
+}
+
+.footer__logo-mark {
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(45deg);
+  flex-shrink: 0;
+  transition: border-color 0.3s;
+}
+
+.footer__logo:hover .footer__logo-mark {
+  border-color: var(--glow);
+}
+
+.footer__logo-mark span {
+  display: block;
+  transform: rotate(-45deg);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  color: var(--gold);
+  letter-spacing: 1px;
+  transition: color 0.3s;
+}
+
+.footer__logo:hover .footer__logo-mark span {
+  color: var(--glow);
+}
+
+.footer__logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.footer__logo-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 21px;
+  letter-spacing: 3px;
+  color: var(--white);
+}
+
+.footer__logo-sub {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 9px;
+  letter-spacing: 4px;
+  color: var(--gold);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+/* Brand description */
+.footer__brand-desc {
+  font-size: 14px;
+  color: var(--smoke);
+  line-height: 1.75;
+  font-weight: 300;
+  max-width: 360px;
+}
+
+/* Inline contact details */
+.footer__contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer__contact-item {
+  display: flex;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--smoke);
+  line-height: 1.5;
+}
+
+.footer__contact-label {
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  min-width: 52px;
+  padding-top: 1px;
+  flex-shrink: 0;
+}
+
+/* ── Nav columns ── */
+.footer__nav {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.footer__col-heading {
+  font-size: 10px;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.footer__col-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer__link {
+  color: var(--smoke);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 300;
+  position: relative;
+  transition: color 0.3s;
+  display: inline-block;
+}
+
+.footer__link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.3s ease;
+}
+
+.footer__link:hover {
+  color: var(--white);
+}
+
+.footer__link:hover::after {
+  width: 100%;
+}
+
+/* ─────────────────────────────────────────
+   Divider
+   ───────────────────────────────────────── */
+.footer__divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.06);
+  margin-bottom: 32px;
+}
+
+/* ─────────────────────────────────────────
+   Bottom row
+   ───────────────────────────────────────── */
+.footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer__copy {
+  font-size: 12px;
+  color: var(--smoke);
+  font-weight: 300;
+}
+
+.footer__gold {
+  color: var(--gold);
+}
+
+.footer__cert {
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--smoke);
+  border: 1px solid rgba(200, 146, 42, 0.25);
+  padding: 6px 14px;
+}
+
+/* ─────────────────────────────────────────
+   Responsive
+   ───────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .footer__top {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+
+  .footer__nav {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .footer {
+    padding: 80px 5% 32px;
+  }
+
+  .footer__nav {
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .footer__copy {
+    font-size: 11px;
+  }
+}

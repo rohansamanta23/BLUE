@@ -1,0 +1,338 @@
+/* ─────────────────────────────────────────
+   CONTACT — Blue Star Engineering
+   ───────────────────────────────────────── */
+
+.contact {
+  background: var(--ink);
+  padding: 160px 7%;
+}
+
+/* ── Two column grid ── */
+.contact__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 120px;
+  align-items: start;
+}
+
+/* ─────────────────────────────────────────
+   Left — headline + details
+   ───────────────────────────────────────── */
+.contact__left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition:
+    opacity   0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.contact__left--visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.contact__headline {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(64px, 8vw, 112px);
+  line-height: 0.88;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 64px;
+}
+
+.contact__headline--gold {
+  display: block;
+  color: var(--gold);
+}
+
+/* Contact detail items */
+.contact__details {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.contact__detail-item {
+  display: flex;
+  gap: 20px;
+  padding: 24px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  transition: padding-left 0.3s ease;
+}
+
+.contact__detail-item:first-child {
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.contact__detail-item:hover {
+  padding-left: 8px;
+}
+
+.contact__detail-label {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  min-width: 100px;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+.contact__detail-value {
+  font-size: 14px;
+  color: var(--fog);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* ─────────────────────────────────────────
+   Right — form
+   ───────────────────────────────────────── */
+.contact__right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition:
+    opacity   0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: 0.15s;
+}
+
+.contact__right--visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── Form layout ── */
+.contact__form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.contact__form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+/* Field wrapper */
+.contact__field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Label */
+.contact__label {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--smoke);
+  font-weight: 500;
+}
+
+/* Input & textarea — borderless bottom-line style */
+.contact__input,
+.contact__textarea,
+.contact__select {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  padding: 12px 0;
+  outline: none;
+  width: 100%;
+  transition: border-color 0.3s ease;
+}
+
+.contact__input::placeholder,
+.contact__textarea::placeholder {
+  color: rgba(138, 148, 166, 0.5);
+}
+
+.contact__input:focus,
+.contact__textarea:focus,
+.contact__select:focus {
+  border-color: var(--gold);
+}
+
+/* Error state */
+.contact__input--error {
+  border-color: #e05252 !important;
+}
+
+/* Inline error message */
+.contact__error {
+  font-size: 11px;
+  color: #e05252;
+  letter-spacing: 0.5px;
+}
+
+/* Textarea */
+.contact__textarea {
+  resize: none;
+  height: 110px;
+}
+
+/* Custom select wrapper */
+.contact__select-wrap {
+  position: relative;
+}
+
+.contact__select {
+  appearance: none;
+  cursor: pointer;
+  padding-right: 32px;
+}
+
+.contact__select option {
+  background: var(--deep);
+  color: var(--white);
+}
+
+.contact__select-arrow {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gold);
+  font-size: 14px;
+  pointer-events: none;
+}
+
+/* Submit button */
+.contact__submit {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 17px 40px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 2.5px;
+  cursor: pointer;
+  transition:
+    background 0.3s ease,
+    color      0.3s ease,
+    gap        0.3s ease;
+  margin-top: 8px;
+}
+
+.contact__submit:hover {
+  background: var(--gold);
+  color: var(--ink);
+  gap: 20px;
+}
+
+/* ─────────────────────────────────────────
+   Success state
+   ───────────────────────────────────────── */
+.contact__success {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 56px 48px;
+  border: 1px solid rgba(200, 146, 42, 0.25);
+  animation: successFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes successFade {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+.contact__success-icon {
+  width: 56px;
+  height: 56px;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: var(--gold);
+}
+
+.contact__success-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 40px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.contact__success-desc {
+  font-size: 15px;
+  color: var(--smoke);
+  line-height: 1.7;
+  font-weight: 300;
+  max-width: 340px;
+}
+
+.contact__success-btn {
+  background: none;
+  border: none;
+  color: var(--gold);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: color 0.3s;
+}
+
+.contact__success-btn:hover {
+  color: var(--glow);
+}
+
+/* ─────────────────────────────────────────
+   Responsive
+   ───────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .contact__grid {
+    grid-template-columns: 1fr;
+    gap: 72px;
+  }
+
+  .contact__left  { transform: translateY(40px); }
+  .contact__right { transform: translateY(40px); transition-delay: 0.08s; }
+
+  .contact__left--visible,
+  .contact__right--visible {
+    transform: translateY(0);
+  }
+
+  .contact__headline {
+    margin-bottom: 48px;
+  }
+}
+
+@media (max-width: 600px) {
+  .contact {
+    padding: 100px 5%;
+  }
+
+  .contact__form-row {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .contact__submit {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .contact__success {
+    padding: 36px 28px;
+  }
+}

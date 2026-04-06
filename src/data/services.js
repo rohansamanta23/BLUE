@@ -6,26 +6,21 @@ export const SERVICES = [
   },
   {
     num:   '02',
-    title: 'MEP Engineering',
-    desc:  'Complete Mechanical, Electrical, and Plumbing design and installation for residential and commercial complexes.',
-  },
-  {
-    num:   '03',
     title: 'Structural Engineering',
     desc:  'Detailed structural analysis for RCC and steel structures, including retrofitting and repair works.',
   },
   {
-    num:   '04',
+    num:   '03',
     title: 'Infrastructure & Roads',
     desc:  'Highway construction, flyovers, drainage systems, and urban infrastructure development.',
   },
   {
-    num:   '05',
+    num:   '04',
     title: 'Plant Maintenance',
     desc:  'Scheduled and emergency maintenance for industrial plants and utilities to minimise downtime.',
   },
   {
-    num:   '06',
+    num:   '05',
     title: 'Design & Consultancy',
     desc:  'End-to-end consultancy from feasibility and design to project management and final handover.',
   },

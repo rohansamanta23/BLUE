@@ -4,9 +4,9 @@ import About from './sections/About/About'
 import Services from './sections/Services/Services'
 import OngoingProjects from './sections/OngoingProjects/OngoingProjects'
 import PastProjects from './sections/PastProjects/PastProjects'
-// import Careers from './sections/Careers/Careers'
-// import Contact from './sections/Contact/Contact'
-// import Footer from './components/Footer/Footer'
+import Careers from './sections/Careers/Careers'
+import Contact from './sections/Contact/Contact'
+import Footer from './components/Footer/Footer'
 
 function App() {
   return (
@@ -14,14 +14,12 @@ function App() {
       <Navbar />
       <Hero />       
       <About />      
-      {/* <Services />    */}
+      <Services />   
       <OngoingProjects />
       <PastProjects />  
-
-      {/* Sections will be added here one by one */}
-      {/* <Careers />     */}
-      {/* <Contact />     */}
-      {/* <Footer />      */}
+      <Careers />    
+      <Contact />    
+      <Footer />     
 
     </>
   )
