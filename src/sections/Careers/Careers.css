@@ -1,0 +1,295 @@
+/* ─────────────────────────────────────────
+   CAREERS — Blue Star Engineering
+   ───────────────────────────────────────── */
+
+.careers {
+  background: var(--paper);
+  color: var(--ink);
+  padding: 160px 7%;
+}
+
+/* ─────────────────────────────────────────
+   Top intro row
+   ───────────────────────────────────────── */
+.careers__top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: flex-end;
+  margin-bottom: 80px;
+}
+
+/* Left — eyebrow + big title */
+.careers__left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition:
+    opacity   0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.careers__left--visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.careers__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 24px;
+}
+
+.careers__eyebrow::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.careers__title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(52px, 5.5vw, 76px);
+  line-height: 0.92;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* Right — description + email */
+.careers__right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition:
+    opacity   0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: 0.12s;
+}
+
+.careers__right--visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.careers__desc {
+  font-size: 17px;
+  color: #4a5568;
+  line-height: 1.85;
+  font-weight: 300;
+  margin-bottom: 32px;
+}
+
+.careers__email {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 1.5px;
+  color: var(--gold);
+  text-decoration: none;
+  position: relative;
+  transition: gap 0.3s ease, color 0.3s ease;
+}
+
+.careers__email::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.4s ease;
+}
+
+.careers__email:hover {
+  gap: 16px;
+  color: var(--ink);
+}
+
+.careers__email:hover::after {
+  width: 100%;
+}
+
+/* ─────────────────────────────────────────
+   Job list
+   ───────────────────────────────────────── */
+.careers__list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Single job row */
+.careers__job {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 36px 0;
+  border-top: 1px solid rgba(11, 14, 19, 0.1);
+  position: relative;
+  cursor: default;
+
+  /* Entry state */
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity   0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    padding   0.3s ease;
+}
+
+.careers__job:last-child {
+  border-bottom: 1px solid rgba(11, 14, 19, 0.1);
+}
+
+.careers__job--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.careers__job:hover {
+  padding-left: 12px;
+}
+
+/* Gold sweep line at the bottom of each row */
+.careers__job-line {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.5s ease;
+  z-index: 1;
+}
+
+.careers__job:hover .careers__job-line {
+  width: 100%;
+}
+
+/* Job info — left side */
+.careers__job-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.careers__job-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(24px, 2.8vw, 36px);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--ink);
+  line-height: 1;
+  transition: color 0.3s;
+}
+
+.careers__job:hover .careers__job-title {
+  color: var(--gold);
+}
+
+.careers__job-meta {
+  font-size: 13px;
+  color: var(--smoke);
+  font-weight: 300;
+  letter-spacing: 0.3px;
+}
+
+/* Right side — badge + arrow */
+.careers__job-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
+}
+
+.careers__badge {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  padding: 5px 14px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.careers__job:hover .careers__badge {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+.careers__arrow {
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(11, 14, 19, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: var(--ink);
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.careers__job:hover .careers__arrow {
+  background: var(--ink);
+  color: var(--white);
+  border-color: var(--ink);
+}
+
+/* ─────────────────────────────────────────
+   Responsive
+   ───────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .careers__top {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    margin-bottom: 60px;
+  }
+
+  .careers__left  { transform: translateY(30px); }
+  .careers__right { transform: translateY(30px); transition-delay: 0.06s; }
+
+  .careers__left--visible,
+  .careers__right--visible {
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .careers {
+    padding: 100px 5%;
+  }
+
+  .careers__job {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .careers__job-right {
+    gap: 12px;
+  }
+
+  .careers__arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .careers__desc {
+    font-size: 15px;
+  }
+
+  .careers__job-right {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}

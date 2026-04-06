@@ -17,7 +17,7 @@ const CONTACT_DETAILS = [
   },
   {
     label: 'Phone',
-    value: '+91 80 4567 8900',
+    value: '+91 XXXXX XXXXX',
   },
   {
     label: 'Email',
