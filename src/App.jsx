@@ -4,7 +4,7 @@ import About from './sections/About/About'
 import Services from './sections/Services/Services'
 import OngoingProjects from './sections/OngoingProjects/OngoingProjects'
 import PastProjects from './sections/PastProjects/PastProjects'
-import Careers from './sections/Careers/Careers'
+// import Careers from './sections/Careers/Careers'
 import Contact from './sections/Contact/Contact'
 import Footer from './components/Footer/Footer'
 
