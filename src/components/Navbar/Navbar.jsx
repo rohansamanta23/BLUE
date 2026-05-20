@@ -4,11 +4,17 @@ import "./Navbar.css";
 const NAV_LINKS = [
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
-  { label: "Projects", href: "#ongoing" },
-  { label: "Careers", href: "#careers" },
+  { label: "Projects", href: "#past" },
+  // { label: "Careers", href: "#careers" },
 ];
 
-const SECTIONS = ["about", "services", "ongoing", "careers", "contact"];
+const SECTIONS = [
+  "about",
+  "services",
+  "past",
+  //  "careers",
+  "contact",
+];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -52,7 +58,7 @@ export default function Navbar() {
   return (
     <nav className={`nav ${scrolled ? "scrolled" : ""}`}>
       {/* ── Logo ── */}
-      <a href='#home' className='logo' onClick={closeMenu}>
+      <a href='#home' className={scrolled ? "logo" : "invis-logo"} onClick={closeMenu}>
         <div className='logoMark'>
           <span>BS</span>
         </div>

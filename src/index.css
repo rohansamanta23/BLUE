@@ -2,13 +2,13 @@
 
 /* ── CSS Variables ── */
 :root {
-  --ink:   #0b0e13;
-  --deep:  #111620;
-  --gold:  #c8922a;
-  --glow:  #e8b050;
-  --smoke: #8a94a6;
-  --fog:   #d4dce8;
-  --paper: #f7f5f0;
+  --ink:   #050d1a;   /* was #0b0e13 — deeper navy black */
+  --deep:  #0a1628;   /* was #111620 — dark navy */
+  --gold:  #1a6fd4;   /* was #c8922a — primary blue (buttons, accents) */
+  --glow:  #4d96e8;   /* was #e8b050 — lighter blue for hover states */
+  --smoke: #7a91b0;   /* was #8a94a6 — blue-tinted muted text */
+  --fog:   #b8cce4;   /* was #d4dce8 — light blue-grey text */
+  --paper: #f0f4fa;   /* was #f7f5f0 — cool blue-white for light sections */
   --white: #ffffff;
 }
 

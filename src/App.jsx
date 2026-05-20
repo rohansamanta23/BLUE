@@ -15,9 +15,9 @@ function App() {
       <Hero />       
       <About />      
       <Services />   
-      <OngoingProjects />
+      {/* <OngoingProjects /> */}
       <PastProjects />  
-      <Careers />    
+      {/* <Careers />     */}
       <Contact />    
       <Footer />     
 

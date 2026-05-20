@@ -49,6 +49,10 @@
   z-index: 601;                 /* stays above drawer */
 }
 
+.invis-logo{
+  opacity: 0;
+}
+
 .logoMark {
   width: 40px;
   height: 40px;

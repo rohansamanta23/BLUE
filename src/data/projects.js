@@ -1,38 +1,4 @@
-export const ONGOING_PROJECTS = [
-  {
-    id:       1,
-    title:    'Whitefield Tech Park Phase 3',
-    desc:     '6-storey commercial complex with full MEP systems and green building certification.',
-    client:   'Prestige Group',
-    location: 'Bengaluru',
-    deadline: 'Dec 2025',
-    progress: 72,
-    status:   'In Progress',
-    image:    'https://res.cloudinary.com/projectbackendrohan/image/upload/v1775448576/istockphoto-473249046-612x612_qemnyd.jpg',
-  },
-  {
-    id:       2,
-    title:    'NH-44 Flyover Expansion',
-    desc:     'Structural widening and extension of a 2.4 km highway flyover near Tumkur Road.',
-    client:   'NHAI',
-    location: 'Karnataka',
-    deadline: 'Mar 2026',
-    progress: 45,
-    status:   'In Progress',
-    image:    'https://res.cloudinary.com/projectbackendrohan/image/upload/v1775448576/images_f2xzib.jpg',
-  },
-  {
-    id:       3,
-    title:    'Mysuru Industrial Warehouse',
-    desc:     '100,000 sq.ft steel-frame warehouse with automated fire suppression and solar rooftop.',
-    client:   'Confidential',
-    location: 'Mysuru',
-    deadline: 'Jun 2025',
-    progress: 88,
-    status:   'Near Completion',
-    image:    'https://res.cloudinary.com/projectbackendrohan/image/upload/v1775448261/WhatsApp_Image_2026-04-05_at_11.24.53_PM_m4rurk.jpg',
-  },
-]
+export const ONGOING_PROJECTS = [];
 
 export const PAST_PROJECTS = [
   {
