@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { PAST_PROJECTS, MARQUEE_ITEMS } from '../../data/projects'
+import { PAST_PROJECTS, MARQUEE_ITEMS } from '../../data/projects.js'
 import './PastProjects.css'
 
 // Double the items so the marquee loops seamlessly

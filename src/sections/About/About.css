@@ -196,19 +196,40 @@
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  background: var(--gold);
-  color: var(--ink);
+  
+  /* The Animated Gradient */
+  background: linear-gradient(300deg, #1a6fd4, #b8cce4, #4d96e8);
+  background-size: 180% 180%;
+  animation: gradient-animation 15s ease infinite;
+
+  color: var(--ink); /* Note: If the dark blue makes this hard to read, change this to #ffffff */
   padding: 17px 36px;
   font-family: 'Bebas Neue', sans-serif;
   font-size: 18px;
   letter-spacing: 2px;
   text-decoration: none;
-  transition: background 0.3s ease, gap 0.3s ease;
+  
+  /* Swapped background transition for filter to protect the animation */
+  transition: gap 0.3s ease, filter 0.3s ease;
+  box-shadow: 0 8px 20px rgba(26, 111, 212, 0.3);
 }
 
 .about__cta:hover {
-  background: var(--glow);
+  filter: brightness(1.15); 
   gap: 18px;
+  scale: 1.02;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* ─────────────────────────────────────────

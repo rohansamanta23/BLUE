@@ -22,7 +22,7 @@
   opacity: 0;
   transform: translateX(-50px);
   transition:
-    opacity   0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -32,7 +32,7 @@
 }
 
 .contact__headline {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   font-size: clamp(64px, 8vw, 112px);
   line-height: 0.88;
   text-transform: uppercase;
@@ -41,8 +41,16 @@
 }
 
 .contact__headline--gold {
-  display: block;
-  color: var(--gold);
+  background: #1a6fd4; /* Fallback */
+  background: linear-gradient(
+    135deg,
+    rgba(26, 111, 212, 1) 0%,
+    rgba(77, 150, 232, 1) 50%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 /* Contact detail items */
@@ -93,7 +101,7 @@
   opacity: 0;
   transform: translateX(50px);
   transition:
-    opacity   0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
   transition-delay: 0.15s;
 }
@@ -140,7 +148,7 @@
   border: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   color: var(--white);
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 15px;
   font-weight: 300;
   padding: 12px 0;
@@ -214,14 +222,14 @@
   border: 1px solid var(--gold);
   color: var(--gold);
   padding: 17px 40px;
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   font-size: 18px;
   letter-spacing: 2.5px;
   cursor: pointer;
   transition:
     background 0.3s ease,
-    color      0.3s ease,
-    gap        0.3s ease;
+    color 0.3s ease,
+    gap 0.3s ease;
   margin-top: 8px;
 }
 
@@ -245,8 +253,14 @@
 }
 
 @keyframes successFade {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0);    }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .contact__success-icon {
@@ -262,7 +276,7 @@
 }
 
 .contact__success-title {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   font-size: 40px;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -281,7 +295,7 @@
   background: none;
   border: none;
   color: var(--gold);
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   font-size: 16px;
   letter-spacing: 2px;
   cursor: pointer;
@@ -304,8 +318,13 @@
     gap: 72px;
   }
 
-  .contact__left  { transform: translateY(40px); }
-  .contact__right { transform: translateY(40px); transition-delay: 0.08s; }
+  .contact__left {
+    transform: translateY(40px);
+  }
+  .contact__right {
+    transform: translateY(40px);
+    transition-delay: 0.08s;
+  }
 
   .contact__left--visible,
   .contact__right--visible {

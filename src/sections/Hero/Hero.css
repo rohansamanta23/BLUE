@@ -20,7 +20,8 @@
       rgba(11, 14, 19, 0.65) 55%,
       rgba(11, 14, 19, 1.00) 100%
     ),
-    url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1800&q=85')
+    /* url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1800&q=85') */
+    url('../../../public/assets/Gemini_Generated_Image_gval4kgval4kgval.png')
     center / cover no-repeat;
   transform: scale(1.08);
   animation: heroBgZoom 5s ease forwards;
@@ -62,6 +63,14 @@
 /* Gold colour for "Engineer" */
 .hero__line-span--gold {
   color: var(--gold);
+}
+
+.hero__line-span--blue {
+  background: #1A6FD4; /* Fallback */
+  background: linear-gradient(135deg,rgba(26, 111, 212, 1) 0%, rgba(77, 150, 232, 1) 30%, rgba(255, 255, 255, 1) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent; 
 }
 
 /* Added via JS after mount */
@@ -127,26 +136,48 @@
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  background: var(--gold);
-  color: var(--ink);
+  
+  /* The Animated Gradient */
+  background: linear-gradient(300deg, #1a6fd4, #96b1d1, #1a6fd4);
+  background-size: 180% 180%;
+  animation: gradient-animation 15s ease infinite;
+
+  color: var(--ink); /* Note: If the dark blue makes this hard to read, change this to #ffffff */
   padding: 17px 36px;
   font-family: 'Bebas Neue', sans-serif;
   font-size: 18px;
   letter-spacing: 2px;
   text-decoration: none;
-  transition: background 0.3s ease, gap 0.3s ease;
+  
+  /* Swapped background transition for filter to protect the animation */
+  transition: gap 0.3s ease, filter 0.3s ease;
 }
 
 .hero__btn-primary:hover {
-  background: var(--glow);
+  /* Brightens the gradient instead of replacing it with a solid color */
+  filter: brightness(1.15); 
   gap: 18px;
+  scale: 1.02;
+}
+
+/* The Animation Keyframes */
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .hero__btn-ghost {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  border: 1px solid rgba(200, 146, 42, 0.45);
+  border: 1px solid rgba(122, 195, 209, 0.45);
   color: var(--fog);
   padding: 17px 36px;
   font-family: 'Bebas Neue', sans-serif;

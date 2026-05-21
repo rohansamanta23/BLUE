@@ -78,7 +78,7 @@ export default function About() {
           <div className="about__img" />
         </div>
         <div className="about__badge">
-          <strong>2003</strong>
+          <strong>2002</strong>
           <span>Founded in Bengaluru</span>
         </div>
       </div>

@@ -1,10 +1,14 @@
 import { useEffect, useRef } from "react";
 import "./Hero.css";
+import { PAST_PROJECTS } from "../../data/projects.js";
 
+const foundYear = 2002;
+let currentYear = new Date().getFullYear();
+let runningYear = currentYear - foundYear;
 
 const STATS = [
-  { num: "20", label: "Years" },
-  { num: "350", label: "Projects" },
+  { num: runningYear.toString(), label: "Years" },
+  { num: PAST_PROJECTS.length.toString(), label: "Projects" },
   { num: "45", label: "Engineers" },
 ];
 
@@ -47,7 +51,9 @@ export default function Hero() {
           <div key={word} className='hero__line'>
             <span
               ref={(el) => (linesRef.current[i] = el)}
-              className={`hero__line-span ${word === "STAR." ? "hero__line-span--gold" : ""}`}
+              className={`hero__line-span ${
+                word === "STAR." ? "hero__line-span--blue" : ""
+              }`}
             >
               {word}
             </span>
@@ -59,11 +65,11 @@ export default function Hero() {
           <p className='hero__desc'>
             Blue Star Engineering Co. delivers{" "}
             <em>world-class civil, structural, and MEP solutions</em> — from
-            foundation to finish, for 20 years running.
+            foundation to finish, for {runningYear} years running.
           </p>
 
           <div className='hero__actions'>
-            <a href='#ongoing' className='hero__btn-primary'>
+            <a href='#past' className='hero__btn-primary'>
               View Projects →
             </a>
             <a href='#contact' className='hero__btn-ghost'>

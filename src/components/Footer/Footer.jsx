@@ -6,7 +6,6 @@ const FOOTER_NAV = [
     links: [
       { label: 'About Us',         href: '#about'    },
       { label: 'Services',         href: '#services' },
-      { label: 'Ongoing Projects', href: '#ongoing'  },
       { label: 'Past Projects',    href: '#past'     },
     ],
   },
@@ -22,7 +21,6 @@ const FOOTER_NAV = [
   {
     heading: 'Connect',
     links: [
-      { label: 'Careers',         href: '#careers'  },
       { label: 'Contact Us',      href: '#contact'  },
       { label: 'LinkedIn',        href: '#'         },
       { label: 'Privacy Policy',  href: '#'         },
